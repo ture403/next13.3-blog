@@ -7,15 +7,15 @@ import Sidebar from "@/app/(shared)/Sidebar";
 import { prisma } from "@/app/api/client";
 import { Post } from "@prisma/client";
 
+export const revalidate = 60;
+
 const getPosts = async () => {
   const posts = await prisma.post.findMany();
-
   return posts;
 };
 
 export default async function Home() {
   const posts = await getPosts();
-  console.log("posts", posts);
 
     const formatPosts = () => {
     const trendingPosts: Array<Post> = [];
@@ -43,7 +43,7 @@ export default async function Home() {
       <Trending trendingPosts={trendingPosts} />
       <div className="md:flex gap-10 mb-5">
         <div className="basis-3/4">
-          <Tech />
+          <Tech techPosts={techPosts} />
           <Travel />
           <Other />
           <div className="hidden md:block">
