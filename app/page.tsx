@@ -7,11 +7,23 @@ import Sidebar from "@/app/(shared)/Sidebar";
 import { prisma } from "@/app/api/client";
 import { Post } from "@prisma/client";
 
+
 export const revalidate = 60;
 
 const getPosts = async () => {
   const posts = await prisma.post.findMany();
-  return posts;
+  
+  const formattedPosts = await Promise.all(
+    posts.map(async (post: Post) => {
+      const imageModule = require(`../public${post.image}`);
+      return {
+        ...post,
+        image: imageModule.default,
+      };
+    })
+  );
+
+  return formattedPosts;
 };
 
 export default async function Home() {
@@ -44,8 +56,8 @@ export default async function Home() {
       <div className="md:flex gap-10 mb-5">
         <div className="basis-3/4">
           <Tech techPosts={techPosts} />
-          <Travel />
-          <Other />
+          <Travel travelPosts={travelPosts} />
+          <Other otherPosts={otherPosts} />
           <div className="hidden md:block">
             <Subscribe />
           </div>
