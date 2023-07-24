@@ -1,6 +1,6 @@
 # NEXT-BLOG
 
-<img src="public/assets/blog.jpg"  width="700" height="370">
+<img src="public/assets/blog.jpg"  width="1000" height="500">
 
 NEXT.JS 13.3 버전으로 작성한 블로그 입니다.
 
@@ -26,6 +26,16 @@ npm run dev
 env 파일이 없기 때문에 env는 따로 만들어서 실행
 
 env list : planetscale
+
+# 프로젝트 목적
+
+---
+
++ NEXT.JS 13.3 버전 이해
++ NEXT 에서 DB 연결 이해
++ TYPESCRIPT 이해
++ API 연동 이해
++ PRISMA 활용법 
 
 
 
